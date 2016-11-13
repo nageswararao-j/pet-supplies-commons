@@ -4,6 +4,7 @@ import com.pet.supplies.common.domain.AdminOrSeller;
 import com.pet.supplies.common.model.AdminOrSellerModel;
 
 import org.apache.commons.collections.CollectionUtils;
+
 import com.pet.supplies.common.domain.Address;
 import com.pet.supplies.common.domain.CartItem;
 import com.pet.supplies.common.domain.Category;
@@ -11,6 +12,7 @@ import com.pet.supplies.common.domain.Image;
 import com.pet.supplies.common.domain.Orders;
 import com.pet.supplies.common.domain.Product;
 import com.pet.supplies.common.domain.AuthenticateUser;
+import com.pet.supplies.common.domain.User;
 import com.pet.supplies.common.model.AddressModel;
 import com.pet.supplies.common.model.AuthenticateUserModel;
 import com.pet.supplies.common.model.CartItemModel;
@@ -19,6 +21,7 @@ import com.pet.supplies.common.model.ImageModel;
 import com.pet.supplies.common.model.OrdersModel;
 import com.pet.supplies.common.model.ProductModel;
 import com.pet.supplies.common.model.UserModel;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -45,16 +48,23 @@ public class EntityToModelMapper
       if (CollectionUtils.isNotEmpty(categories))
       {
          categories.forEach(category -> {
-            CategoryModel model = new CategoryModel();
-            model.setId(category.getId());
-            model.setCode(category.getCode());
-            model.setName(category.getName());
+            CategoryModel model = mapCategoryEntityToCategoryModel(category);
             model.setProducts(mapProductEntityToProductModel(category.getProducts()));
             categoryModels.add(model);
          });
       }
       return categoryModels;
    }
+
+public static CategoryModel mapCategoryEntityToCategoryModel(Category category) {
+	CategoryModel model = new CategoryModel();
+	if(category != null){
+		model.setId(category.getId());
+		model.setCode(category.getCode());
+		model.setName(category.getName());
+	}
+	return model;
+}
 
    /**
     * TODO
@@ -114,16 +124,21 @@ public class EntityToModelMapper
       if (CollectionUtils.isNotEmpty(images))
       {
          images.forEach(image -> {
-            ImageModel model = new ImageModel();
-            model.setId(image.getImg_id());
-            model.setName(image.getName());
-            model.setUrl(image.getUrl());
+            ImageModel model = mapImageToImageModel(image);
             imageModels.add(model);
          });
 
       }
       return imageModels;
    }
+
+public static ImageModel mapImageToImageModel(Image image) {
+	ImageModel model = new ImageModel();
+	model.setId(image.getImg_id());
+	model.setName(image.getName());
+	model.setUrl(image.getUrl());
+	return model;
+}
 
    /**
     * TODO
@@ -283,4 +298,24 @@ public class EntityToModelMapper
 
       return model;
    }
+	
+	public static Set<UserModel> mapUsersEntityToUsersModel(List<User> users) {
+		Set<UserModel> userModels = new HashSet<UserModel>();
+		if(CollectionUtils.isNotEmpty(users)){
+			users.forEach(user->{
+				UserModel model = new UserModel();
+				model.setAddress(mapAddressEntityToAddressModel(user.getAddress()));
+				model.setName(user.getName());
+			});
+		}
+		return userModels;
+	}
+
+	public static UserModel mapUserEntityToUserModel(User user) {
+		UserModel userModel = new UserModel();
+		if(user != null){
+			userModel.setName(user.getName());
+		}
+		return userModel;
+	}
 }

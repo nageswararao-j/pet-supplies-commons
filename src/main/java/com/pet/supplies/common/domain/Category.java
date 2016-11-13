@@ -5,14 +5,17 @@ package com.pet.supplies.common.domain;
  * @author njanjyal //I removed copyrights
  */
 import lombok.Getter;
-
 import lombok.Setter;
+
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,7 +35,7 @@ public class Category
    @Id
    @Column(name = "CAT_ID")
    @GeneratedValue
-   private int id;
+   private Long id;
    
    @Column(name = "NAME")
    private String name;
@@ -42,5 +45,8 @@ public class Category
 
    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
    private Set<Product> products;
+
+   @Column(name = "SELLER_ID")
+   private Long sellerId;
 
 }

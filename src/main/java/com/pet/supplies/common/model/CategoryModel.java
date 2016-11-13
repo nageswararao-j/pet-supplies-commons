@@ -17,10 +17,10 @@ public class CategoryModel implements Serializable
     * <code>serialVersionUID</code> indicates/is used for.
     */
    private static final long serialVersionUID = 1L;
-   private int id;
+   private Long id;
    private String name;
    private String code;
-
+   private Long sellerId;
    private Set<ProductModel> products;
 
 }

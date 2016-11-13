@@ -24,7 +24,7 @@ public class Image
    @Id
    @GeneratedValue
    @Column(name = "IMG_ID")
-   private int img_id;
+   private Long img_id;
 
    @Column(name = "NAME")
    private String name;
