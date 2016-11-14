@@ -13,8 +13,6 @@ import com.pet.supplies.common.model.AdminOrSellerModel;
 
 import org.apache.commons.collections.CollectionUtils;
 
-import java.util.Collections;
-
 import com.pet.supplies.common.domain.Address;
 import com.pet.supplies.common.domain.CartItem;
 import com.pet.supplies.common.domain.Category;

@@ -1,6 +1,5 @@
 package com.pet.supplies.common.model;
 
-import com.pet.supplies.common.domain.Category;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
